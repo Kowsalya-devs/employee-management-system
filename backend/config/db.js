@@ -1,5 +1,7 @@
-const mysql = require("mysql2");
+// package import 
+const mysql = require("mysql2");  
 
+//database configuration
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -7,9 +9,11 @@ const db = mysql.createConnection({
   database: "employee_db"
 });
 
+//database connection execution
 db.connect(err => {
   if (err) throw err;
   console.log("MySQL Connected");
 });
 
+//Reusability & Export
 module.exports = db;

@@ -44,7 +44,7 @@ app.get("/employees/:id", (req, res) => {
 app.post("/employees", (req, res) => {
   const { name, age, position, department } = req.body;
 
-  if (!name || !age || !position || !department) {
+  if (!name || !age || !position || !department) {  //Validation(prevent empty data)
     return res.send("All fields are required");
   }
 
