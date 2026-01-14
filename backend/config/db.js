@@ -1,7 +1,7 @@
-// package import 
+// import database library 
 const mysql = require("mysql2");  
 
-//database configuration
+//creating database connection
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -9,11 +9,11 @@ const db = mysql.createConnection({
   database: "employee_db"
 });
 
-//database connection execution
+//connect to the database
 db.connect(err => {
   if (err) throw err;
   console.log("MySQL Connected");
 });
 
-//Reusability & Export
+//exporting connection
 module.exports = db;

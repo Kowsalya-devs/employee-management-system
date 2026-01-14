@@ -1,9 +1,12 @@
-// server.js
+// import required packages
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
 
+//intialize express app
 const app = express();
+
+//use middlewares
 app.use(cors());
 app.use(express.json());
 
@@ -20,7 +23,8 @@ db.connect(err => {
   console.log("Database connected");
 });
 
-// GET all employees
+//Create CRUD APIs
+// GET - fetch employees
 app.get("/employees", (req, res) => {
   db.query("SELECT * FROM employees", (err, result) => {
     if (err) return res.send(err);
@@ -28,7 +32,7 @@ app.get("/employees", (req, res) => {
   });
 });
 
-// GET employee by id
+// GET - fetch employee by id
 app.get("/employees/:id", (req, res) => {
   db.query(
     "SELECT * FROM employees WHERE id=?",
@@ -40,7 +44,7 @@ app.get("/employees/:id", (req, res) => {
   );
 });
 
-// ADD employee
+// POST add employee
 app.post("/employees", (req, res) => {
   const { name, age, position, department } = req.body;
 
@@ -58,7 +62,7 @@ app.post("/employees", (req, res) => {
   );
 });
 
-// UPDATE employee
+//PUT update employee
 app.put("/employees/:id", (req, res) => {
   const { name, age, position, department } = req.body;
 
@@ -72,7 +76,7 @@ app.put("/employees/:id", (req, res) => {
   );
 });
 
-// DELETE employee
+// DELETE remove employee
 app.delete("/employees/:id", (req, res) => {
   db.query(
     "DELETE FROM employees WHERE id=?",
@@ -84,6 +88,7 @@ app.delete("/employees/:id", (req, res) => {
   );
 });
 
+//Start server
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
