@@ -23,7 +23,7 @@ function Home() {
     <div className="container">
       <div className="header">
         <h1>Employee Management</h1>
-        <button onClick={() => navigate("/add")}>Add Employee</button>    
+        <button className = "add-btn" onClick={() => navigate("/add")}>Add Employee</button>    
       </div>
 
       <table>
@@ -45,6 +45,7 @@ function Home() {
               <td>{emp.position}</td>
               <td>{emp.department}</td>
               <td>
+                <div className = "action-buttons"></div>
                 <button
                   className="edit"
                   onClick={() => navigate(`/edit/${emp.id}`)}>  
